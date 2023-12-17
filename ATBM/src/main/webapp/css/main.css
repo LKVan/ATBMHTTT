@@ -1,0 +1,126 @@
+@charset "UTF-8";
+
+/*Phần body*/
+.body {
+	margin-top: 30px;
+}
+
+.mr-top-20 {
+	margin-top: 20px;
+}
+
+.mr-b-50 {
+	margin-bottom: 50px;
+}
+
+.carousel-item {
+	max-height: 250px;
+}
+
+.box-item {
+	width: 30px;
+	margin: 0px 10px;
+	padding-left: 8px;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.caroisel-row {
+	margin-left: -20px;
+	margin-top: 15px;
+}
+
+.icon-black {
+	margin: 0px !important;
+	color: black !important;
+	padding: 0px !important;
+}
+
+.img-icon {
+	width: 50px;
+	height: 50px;
+}
+
+.item-icon {
+	margin: 16px 0px;
+}
+
+.badge-item {
+	top: -10px !important;
+	position: absolute;
+	right: 15px !important;
+}
+
+.show_txt {
+	display: inline-block;
+	width: 100%;
+	white-space: nowrap;
+	overflow: hidden !important;
+	text-overflow: ellipsis;
+}
+
+.non-display {
+	display: none !important;
+}
+
+.card-img-top {
+	height: 230px !important;
+	max-height: 230px !important;
+	width: 230px !important;
+}
+
+.card {
+	margin: 0px 10px;
+}
+
+.card-title {
+	color: black;
+}
+
+.card-title:hover {
+	text-decoration: underline;
+	opacity: 0.8;
+}
+
+.item-banner {
+	color: black;
+}
+
+.item-banner:hover {
+	opacity: 0.8;
+	text-decoration: underline;
+}
+
+.is-table-row {
+	display: table;
+}
+
+.is-table-row [class*="col-"] {
+	float: none;
+	display: table-cell;
+	vertical-align: top;
+}
+
+.product {
+	margin-top: 30px;
+}
+
+.text-center {
+	text-align: center;
+}
+
+/* Responsive*/
+@media screen and (max-width:768px) {
+	.body>.row>.caroisel-row {
+		display: none !important;
+	}
+	.new-product {
+		margin-left: 0px !important;
+	}
+	.slider {
+		display: none;
+	}
+}
+/*Kết thúc phần css body*/
