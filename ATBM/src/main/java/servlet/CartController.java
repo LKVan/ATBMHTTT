@@ -2,6 +2,7 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -27,6 +28,7 @@ import model.Product;
 import model.TempCart;
 import model.User;
 import support.CKDT;
+import support.HashOrder;
 
 @WebServlet("/CartController")
 public class CartController extends HttpServlet {
@@ -60,7 +62,12 @@ public class CartController extends HttpServlet {
 				User user = (User) objUser;
 				if (user.getPublicKey() != null) {
 					if (CKDT.verifySignature(signature, user.getPublicKey(), user.getSignatureData())) {
-						addToCTHDandOder(request, response);
+						try {
+							addToCTHDandOder(request, response);
+						} catch (NoSuchAlgorithmException | IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 						deleteCart(request);
 						message.put("ok", "Thành công");
 						session.setAttribute("message", message);
@@ -136,7 +143,7 @@ public class CartController extends HttpServlet {
 		}
 	}
 
-	protected void addToCTHDandOder(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	protected void addToCTHDandOder(HttpServletRequest request, HttpServletResponse response) throws IOException, NoSuchAlgorithmException {
 		HttpSession session = request.getSession();
 		OderAndCTHDDAO db = new OderAndCTHDDAO();
 		PriceTransportOrderDAO priceTransportOrderDAO = PriceTransportOrderDAO.getInstance();
@@ -172,8 +179,9 @@ public class CartController extends HttpServlet {
 			Product product = pd.getProductById(proId);
 			int quantity = item.getQuantity();
 			int price = product.getPrice();
+			String hash = HashOrder.SHA("" + proId + price + quantity);
 
-			db.insertCTHD(temp, proId, price, quantity);
+			db.insertCTHD(temp, proId, price, quantity,hash);
 		}
 	}
 

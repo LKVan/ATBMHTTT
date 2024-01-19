@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : dwh
+ Source Server         : Data
  Source Server Type    : MySQL
- Source Server Version : 100428
- Source Host           : localhost:3306
+ Source Server Version : 80035
+ Source Host           : 103.163.118.50:3306
  Source Schema         : web
 
  Target Server Type    : MySQL
- Target Server Version : 100428
+ Target Server Version : 80035
  File Encoding         : 65001
 
- Date: 16/12/2023 17:41:32
+ Date: 19/01/2024 11:33:53
 */
 
 SET NAMES utf8mb4;
@@ -27,7 +27,7 @@ CREATE TABLE `cart`  (
   `pro_id` int NOT NULL,
   `quantity` int NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 136 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 148 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of cart
@@ -44,7 +44,7 @@ CREATE TABLE `categories`  (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of categories
@@ -66,7 +66,7 @@ CREATE TABLE `comment`  (
   `username` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
   `proId` int NOT NULL,
   `comment` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `time` datetime NOT NULL DEFAULT current_timestamp,
+  `time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 84 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
@@ -83,10 +83,10 @@ CREATE TABLE `confim`  (
   `id` int NOT NULL AUTO_INCREMENT,
   `username` char(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `code` char(4) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `dateCreate` timestamp NOT NULL DEFAULT current_timestamp ON UPDATE CURRENT_TIMESTAMP,
+  `dateCreate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `dateEnd` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 62 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of confim
@@ -102,68 +102,81 @@ CREATE TABLE `cthd`  (
   `product_id` int NULL DEFAULT NULL,
   `price` int NULL DEFAULT NULL,
   `quanlity` int NULL DEFAULT NULL,
+  `hash` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `oder_id`(`oder_id`) USING BTREE,
   INDEX `product_id`(`product_id`) USING BTREE,
   CONSTRAINT `cthd_ibfk_1` FOREIGN KEY (`oder_id`) REFERENCES `order` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `cthd_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 41 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 54 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of cthd
 -- ----------------------------
-INSERT INTO `cthd` VALUES (1, 46, 6, 25000, 1);
-INSERT INTO `cthd` VALUES (2, 47, 9, 20000, 1);
-INSERT INTO `cthd` VALUES (3, 48, 9, 20000, 1);
-INSERT INTO `cthd` VALUES (4, 49, 6, 25000, 1);
-INSERT INTO `cthd` VALUES (5, 50, 6, 25000, 1);
-INSERT INTO `cthd` VALUES (6, 51, 9, 20000, 1);
-INSERT INTO `cthd` VALUES (7, 52, 6, 25000, 1);
-INSERT INTO `cthd` VALUES (8, 53, 9, 20000, 1);
-INSERT INTO `cthd` VALUES (9, 54, 6, 25000, 1);
-INSERT INTO `cthd` VALUES (10, 55, 5, 25000, 1);
-INSERT INTO `cthd` VALUES (11, 56, 4, 25000, 1);
-INSERT INTO `cthd` VALUES (12, 57, 5, 25000, 1);
-INSERT INTO `cthd` VALUES (13, 58, 5, 25000, 1);
-INSERT INTO `cthd` VALUES (14, 59, 10, 40000, 1);
-INSERT INTO `cthd` VALUES (15, 60, 3, 55000, 1);
-INSERT INTO `cthd` VALUES (16, 61, 5, 25000, 1);
-INSERT INTO `cthd` VALUES (17, 62, 6, 25000, 1);
-INSERT INTO `cthd` VALUES (18, 63, 8, 80000, 1);
-INSERT INTO `cthd` VALUES (19, 64, 9, 20000, 1);
-INSERT INTO `cthd` VALUES (20, 65, 7, 30000, 1);
-INSERT INTO `cthd` VALUES (21, 66, 10, 40000, 1);
-INSERT INTO `cthd` VALUES (22, 67, 8, 80000, 1);
-INSERT INTO `cthd` VALUES (23, 67, 5, 25000, 1);
-INSERT INTO `cthd` VALUES (24, 68, 7, 30000, 1);
-INSERT INTO `cthd` VALUES (25, 69, 3, 55000, 1);
-INSERT INTO `cthd` VALUES (26, 70, 3, 55000, 1);
-INSERT INTO `cthd` VALUES (27, 70, 8, 80000, 1);
-INSERT INTO `cthd` VALUES (28, 71, 4, 25000, 1);
-INSERT INTO `cthd` VALUES (29, 72, 6, 25000, 1);
-INSERT INTO `cthd` VALUES (30, 73, 4, 25000, 1);
-INSERT INTO `cthd` VALUES (31, 73, 8, 80000, 1);
-INSERT INTO `cthd` VALUES (32, 74, 5, 25000, 1);
-INSERT INTO `cthd` VALUES (33, 75, 5, 25000, 1);
-INSERT INTO `cthd` VALUES (34, 76, 6, 25000, 1);
-INSERT INTO `cthd` VALUES (35, 77, 10, 40000, 1);
-INSERT INTO `cthd` VALUES (36, 78, 5, 25000, 1);
-INSERT INTO `cthd` VALUES (37, 79, 8, 80000, 1);
-INSERT INTO `cthd` VALUES (38, 80, 5, 25000, 1);
-INSERT INTO `cthd` VALUES (39, 80, 6, 25000, 1);
-INSERT INTO `cthd` VALUES (40, 81, 5, 25000, 1);
+INSERT INTO `cthd` VALUES (1, 46, 6, 25000, 1, NULL);
+INSERT INTO `cthd` VALUES (2, 47, 9, 20000, 1, NULL);
+INSERT INTO `cthd` VALUES (3, 48, 9, 20000, 1, NULL);
+INSERT INTO `cthd` VALUES (4, 49, 6, 25000, 1, NULL);
+INSERT INTO `cthd` VALUES (5, 50, 6, 25000, 1, NULL);
+INSERT INTO `cthd` VALUES (6, 51, 9, 20000, 1, NULL);
+INSERT INTO `cthd` VALUES (7, 52, 6, 25000, 1, NULL);
+INSERT INTO `cthd` VALUES (8, 53, 9, 20000, 1, NULL);
+INSERT INTO `cthd` VALUES (9, 54, 6, 25000, 1, NULL);
+INSERT INTO `cthd` VALUES (10, 55, 5, 25000, 1, NULL);
+INSERT INTO `cthd` VALUES (11, 56, 4, 25000, 1, NULL);
+INSERT INTO `cthd` VALUES (12, 57, 5, 25000, 1, NULL);
+INSERT INTO `cthd` VALUES (13, 58, 5, 25000, 1, NULL);
+INSERT INTO `cthd` VALUES (14, 59, 10, 40000, 1, NULL);
+INSERT INTO `cthd` VALUES (15, 60, 3, 55000, 1, NULL);
+INSERT INTO `cthd` VALUES (16, 61, 5, 25000, 1, NULL);
+INSERT INTO `cthd` VALUES (17, 62, 6, 25000, 1, NULL);
+INSERT INTO `cthd` VALUES (18, 63, 8, 80000, 1, NULL);
+INSERT INTO `cthd` VALUES (19, 64, 9, 20000, 1, NULL);
+INSERT INTO `cthd` VALUES (20, 65, 7, 30000, 1, NULL);
+INSERT INTO `cthd` VALUES (21, 66, 10, 40000, 1, NULL);
+INSERT INTO `cthd` VALUES (22, 67, 8, 80000, 1, NULL);
+INSERT INTO `cthd` VALUES (23, 67, 5, 25000, 1, NULL);
+INSERT INTO `cthd` VALUES (24, 68, 7, 30000, 1, NULL);
+INSERT INTO `cthd` VALUES (25, 69, 3, 55000, 1, NULL);
+INSERT INTO `cthd` VALUES (26, 70, 3, 55000, 1, NULL);
+INSERT INTO `cthd` VALUES (27, 70, 8, 80000, 1, NULL);
+INSERT INTO `cthd` VALUES (28, 71, 4, 25000, 1, NULL);
+INSERT INTO `cthd` VALUES (29, 72, 6, 25000, 1, NULL);
+INSERT INTO `cthd` VALUES (30, 73, 4, 25000, 1, NULL);
+INSERT INTO `cthd` VALUES (31, 73, 8, 80000, 1, NULL);
+INSERT INTO `cthd` VALUES (32, 74, 5, 25000, 1, NULL);
+INSERT INTO `cthd` VALUES (33, 75, 5, 25000, 1, NULL);
+INSERT INTO `cthd` VALUES (34, 76, 6, 25000, 1, NULL);
+INSERT INTO `cthd` VALUES (35, 77, 10, 40000, 1, NULL);
+INSERT INTO `cthd` VALUES (36, 78, 5, 25000, 1, NULL);
+INSERT INTO `cthd` VALUES (37, 79, 8, 80000, 1, NULL);
+INSERT INTO `cthd` VALUES (38, 80, 5, 25000, 1, NULL);
+INSERT INTO `cthd` VALUES (39, 80, 6, 25000, 1, NULL);
+INSERT INTO `cthd` VALUES (40, 81, 5, 25000, 1, NULL);
+INSERT INTO `cthd` VALUES (41, 82, 6, 25000, 1, NULL);
+INSERT INTO `cthd` VALUES (42, 83, 5, 25000, 2, NULL);
+INSERT INTO `cthd` VALUES (43, 84, 7, 30000, 1, NULL);
+INSERT INTO `cthd` VALUES (44, 85, 6, 25000, 1, NULL);
+INSERT INTO `cthd` VALUES (45, 86, 9, 20000, 1, NULL);
+INSERT INTO `cthd` VALUES (47, 87, 9, 20000, 2, '0f14733d9f9991b543e4f904441b449c6cd6c80e927842cd6cd787d6be2e8978');
+INSERT INTO `cthd` VALUES (48, 88, 4, 25000, 2, '90696a9fa77ad7d9ff9aee5530c9915be48bdb9c451fe2585b3b3b189855a6be');
+INSERT INTO `cthd` VALUES (49, 89, 9, 20000, 2, '0f14733d9f9991b543e4f904441b449c6cd6c80e927842cd6cd787d6be2e8978');
+INSERT INTO `cthd` VALUES (50, 89, 120, 11500, 1, '080ab38f7027a375cb5d7f67fbf38816221f4be040fa00aa9282458cbc73eacc');
+INSERT INTO `cthd` VALUES (51, 90, 3, 55000, 3, '8cd8c69c1d93648e9062f6820888bf458df90a5a1994c568b7afc13f855a1555');
+INSERT INTO `cthd` VALUES (52, 90, 8, 80000, 1, 'ea8676297a90ceb16b3123dff3f5412b3aea10e22d9895387bda907fc2b82b9f');
+INSERT INTO `cthd` VALUES (53, 91, 5, 25000, 1, '77c60a65dd5e4bec188502d4698b5c75a7c530428e035be372ac614f555b3b5c');
 
 -- ----------------------------
 -- Table structure for district
 -- ----------------------------
 DROP TABLE IF EXISTS `district`;
 CREATE TABLE `district`  (
-  `id` char(6) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `name` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `type` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `province_id` char(6) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `id` char(6) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `name` varchar(45) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `type` varchar(45) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `province_id` char(6) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB CHARACTER SET = utf8mb3 COLLATE = utf8mb3_unicode_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of district
@@ -889,7 +902,7 @@ CREATE TABLE `feedback`  (
   `subject` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
   `note_` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of feedback
@@ -920,12 +933,12 @@ CREATE TABLE `log`  (
   `id` int NOT NULL AUTO_INCREMENT,
   `level` tinyint NOT NULL,
   `user` tinyint NULL DEFAULT NULL,
-  `src` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `content` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL,
-  `createAt` datetime NOT NULL DEFAULT current_timestamp,
+  `src` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `content` longtext CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NULL,
+  `createAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `status` tinyint NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 166 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 165 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_unicode_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of log
@@ -945,7 +958,7 @@ CREATE TABLE `order`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `user_id`(`user_id`) USING BTREE,
   CONSTRAINT `order_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 82 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 92 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of order
@@ -986,6 +999,16 @@ INSERT INTO `order` VALUES (78, 30, '', '2023-12-16 00:00:00', 1);
 INSERT INTO `order` VALUES (79, 30, '', '2023-12-16 00:00:00', 1);
 INSERT INTO `order` VALUES (80, 29, '', '2023-12-16 00:00:00', 1);
 INSERT INTO `order` VALUES (81, 29, '', '2023-12-16 00:00:00', 1);
+INSERT INTO `order` VALUES (82, 32, '', '2024-01-16 00:00:00', 1);
+INSERT INTO `order` VALUES (83, 32, '', '2024-01-16 00:00:00', 1);
+INSERT INTO `order` VALUES (84, 32, '', '2024-01-16 00:00:00', 1);
+INSERT INTO `order` VALUES (85, 33, '', '2024-01-17 00:00:00', 0);
+INSERT INTO `order` VALUES (86, 33, '', '2024-01-17 00:00:00', 0);
+INSERT INTO `order` VALUES (87, 33, '', '2024-01-17 00:00:00', 0);
+INSERT INTO `order` VALUES (88, 33, '', '2024-01-17 00:00:00', 0);
+INSERT INTO `order` VALUES (89, 33, '', '2024-01-17 00:00:00', 0);
+INSERT INTO `order` VALUES (90, 33, '', '2024-01-18 00:00:00', 1);
+INSERT INTO `order` VALUES (91, 33, '', '2024-01-18 00:00:00', 1);
 
 -- ----------------------------
 -- Table structure for price_transport
@@ -998,7 +1021,7 @@ CREATE TABLE `price_transport`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `order_id`(`order_id`) USING BTREE,
   CONSTRAINT `price_transport_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `order` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 37 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 46 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of price_transport
@@ -1039,6 +1062,16 @@ INSERT INTO `price_transport` VALUES (33, 78, 0);
 INSERT INTO `price_transport` VALUES (34, 79, 0);
 INSERT INTO `price_transport` VALUES (35, 80, 0);
 INSERT INTO `price_transport` VALUES (36, 81, 0);
+INSERT INTO `price_transport` VALUES (37, 82, 0);
+INSERT INTO `price_transport` VALUES (38, 83, 0);
+INSERT INTO `price_transport` VALUES (39, 84, 0);
+INSERT INTO `price_transport` VALUES (40, 85, 0);
+INSERT INTO `price_transport` VALUES (41, 86, 0);
+INSERT INTO `price_transport` VALUES (42, 87, 0);
+INSERT INTO `price_transport` VALUES (43, 88, 0);
+INSERT INTO `price_transport` VALUES (44, 89, 0);
+INSERT INTO `price_transport` VALUES (45, 90, 0);
+INSERT INTO `price_transport` VALUES (46, 91, 0);
 
 -- ----------------------------
 -- Table structure for products
@@ -1180,11 +1213,11 @@ INSERT INTO `products` VALUES (158, 'Ba rọi xông khói xắt lát Le Gourmet 
 -- ----------------------------
 DROP TABLE IF EXISTS `province`;
 CREATE TABLE `province`  (
-  `id` char(6) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `name` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `type` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `id` char(6) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `name` varchar(45) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `type` varchar(45) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB CHARACTER SET = utf8mb3 COLLATE = utf8mb3_unicode_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of province
@@ -1261,7 +1294,7 @@ CREATE TABLE `role`  (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of role
@@ -1312,7 +1345,7 @@ CREATE TABLE `user`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `rol_id`(`rol_id`) USING BTREE,
   CONSTRAINT `user_ibfk_1` FOREIGN KEY (`rol_id`) REFERENCES `role` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 32 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 34 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of user
@@ -1320,9 +1353,11 @@ CREATE TABLE `user`  (
 INSERT INTO `user` VALUES (21, 'Lê Khánh Văn', '0123456789', ',Xã Thái Sơn,Huyện Bảo Lâm,Tỉnh Cao Bằng', 'lekhanhvan68', 'yzIJbBBrU1bMSwcnZWUlg4zZ1w8=', 2, 'van06082002@gmail.com', 0, NULL, NULL, NULL);
 INSERT INTO `user` VALUES (22, 'DoMinPhu', '0123456789', ',Xã Khuôn Hà,Huyện Lâm Bình,Tỉnh Tuyên Quang', 'minhphu1305', 'JexJn4Z8wE7yORn9Ls+FkRpDp78=', 2, 'minhphuzcod@gmail.com', 0, NULL, NULL, NULL);
 INSERT INTO `user` VALUES (23, 'DoMinPhu', '0123456789', ',Phường Trưng Nhị,Thị xã Phúc Yên,Tỉnh Vĩnh Phúc', 'minhphu13052', 'oyxQlY9O/wjAEAn/7oqh6mK0tlg=', 2, 'minhphuzcod@gmail.com', 0, NULL, NULL, NULL);
-INSERT INTO `user` VALUES (29, 'Lê Khánh Văn', '0123456789', ',Phường Sông Bằng,Thành phố Cao Bằng,Tỉnh Cao Bằng', 'lekhanhvan123', 'yzIJbBBrU1bMSwcnZWUlg4zZ1w8=', 2, 'van06082002@gmail.com', 0, NULL, 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDBqZaPGF9deNDKVRIup0wRd8u48mIJsdob1PDR3a5rdjv52JWDksnKhydYMTj+Ae+21fyR+McegxgLdfxQzB+/9DlxuOR0XXnvvYRDKhNJYyFlMc3FVjry2GeURQG6xCjaLhBfQmjrXQWh+kzejrXtfVRzlOH5zECS+sjYokXrYwIDAQAB', 'Thang lol Phu');
+INSERT INTO `user` VALUES (29, 'Lê Khánh Văn', '0123456789', ',Phường Sông Bằng,Thành phố Cao Bằng,Tỉnh Cao Bằng', 'Admin', 'yzIJbBBrU1bMSwcnZWUlg4zZ1w8=', 1, 'van06082002@gmail.com', 0, NULL, 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDBqZaPGF9deNDKVRIup0wRd8u48mIJsdob1PDR3a5rdjv52JWDksnKhydYMTj+Ae+21fyR+McegxgLdfxQzB+/9DlxuOR0XXnvvYRDKhNJYyFlMc3FVjry2GeURQG6xCjaLhBfQmjrXQWh+kzejrXtfVRzlOH5zECS+sjYokXrYwIDAQAB', 'Thang lol Phu');
 INSERT INTO `user` VALUES (30, 'Lê Khánh Văn', '0123456789', ',Phường Sông Bằng,Thành phố Cao Bằng,Tỉnh Cao Bằng', 'lekhanhvan1234', 'yzIJbBBrU1bMSwcnZWUlg4zZ1w8=', 2, 'van06082002@gmail.com', 0, NULL, NULL, 'Tôi là Lê Khánh Văn');
 INSERT INTO `user` VALUES (31, 'Lê Khánh Văn', '0123456789', ',Phường Sông Bằng,Thành phố Cao Bằng,Tỉnh Cao Bằng', 'lekhanhvan1235', 'yzIJbBBrU1bMSwcnZWUlg4zZ1w8=', 2, 'van06082002@gmail.com', 0, NULL, NULL, 'Tôi là Lê Khánh Văn');
+INSERT INTO `user` VALUES (32, 'Lê Khánh Văn', '0328728220', ',Phường Sông Bằng,Thành phố Cao Bằng,Tỉnh Cao Bằng', 'lekhanhvan333', 'yzIJbBBrU1bMSwcnZWUlg4zZ1w8=', 2, 'van06082002@gmail.com', 0, NULL, 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDVrDoLF44wKjEic5SwT+DK7rJSxlVD7WOFsRc3WMX8G4oGID1z429cw7+32YDfSfEWcBUQsBm0NK+cDQSNSe1WYJMGCrHj6jRIqKkUe6IrIzvy8xXHUyoAw34DeUjLYinZKBLyyBrLotYzRv5BWN3XjB62hwN2dbkSEFQz9ZG+GQIDAQAB', 'Tôi là Lê Khánh Văn');
+INSERT INTO `user` VALUES (33, 'Lê Khánh Văn', '0328728220', ',Phường Sông Bằng,Thành phố Cao Bằng,Tỉnh Cao Bằng', 'lekhanhvan444', 'yzIJbBBrU1bMSwcnZWUlg4zZ1w8=', 2, 'van06082002@gmail.com', 0, NULL, 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCVOrQcIz0d6eKWqX4CvqZVg59xSbhcS3eLowymYgYHXjCbDGCG1b2Ov2Yg/CqK7S7VqU/vEWeQrIknX7tuvD1/d2M5qC/1fWX4LhxciQ8p1JZakNjxk8DYOHSN75GA49+qJzjgoBL0PyHBJiyGAo/jrOfB0KWw0JaGkcq3DN4EwwIDAQAB', 'Tôi là Lê Khánh Văn');
 
 -- ----------------------------
 -- Table structure for vendors
@@ -1335,7 +1370,7 @@ CREATE TABLE `vendors`  (
   `phone` char(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `email` char(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of vendors
@@ -1346,12 +1381,12 @@ CREATE TABLE `vendors`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `ward`;
 CREATE TABLE `ward`  (
-  `id` char(6) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `name` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `type` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `district_id` char(6) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `id` char(6) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `name` varchar(45) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `type` varchar(45) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `district_id` char(6) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB CHARACTER SET = utf8mb3 COLLATE = utf8mb3_unicode_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of ward

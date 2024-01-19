@@ -150,7 +150,17 @@ td {
 							style="width: 80px; height: 80px;"></td>
 						<td>${orderItem.getProduct().formatPrice() }</td>
 						<td>${orderItem.getQuanlity() }</td>
-
+						<c:if test="${orderItem.verify() == false}">
+							<label class="badge badge-danger">Đã bị chỉnh sửa</label>
+							<div>
+								<form action="deleteOrder" method="post">
+									<input type="hidden" name="orderId" value="${order.orderId }">
+									<button class="btn btn-primary" type="submit" name="action" value="delete">
+										<i class="fa fa-trash-o">Hủy đơn hàng</i>
+									</button>
+								</form>
+							</div>
+						</c:if>
 					</tr>
 
 				</c:forEach>

@@ -28,7 +28,7 @@ public class OrderDAO {
 			connect = db.getConnection();
 			String query = "SELECT products.id,products.name,products.descreption,cthd.price,"
 					+ "products.image,products.height,products.length,products.width,products.weigth,"
-					+ "products.DanhMuc_id,cthd.quanlity FROM products JOIN cthd ON cthd.product_id = products.id "
+					+ "products.DanhMuc_id,cthd.quanlity,cthd.hash FROM products JOIN cthd ON cthd.product_id = products.id "
 					+ "JOIN `order` ON `order`.id = cthd.oder_id WHERE `order`.id = ?";
 			PreparedStatement ps = connect.prepareStatement(query);
 			ps.setInt(1, orderId);
@@ -36,7 +36,7 @@ public class OrderDAO {
 			while (result.next()) {
 				Product product = new Product(result.getInt(1), result.getString(2), result.getString(3), result.getInt(4),
 						result.getString(5), result.getInt(6),result.getInt(7),result.getInt(8),result.getInt(9),result.getInt(10));
-				OrderItem item = new OrderItem(product, result.getInt(11));
+				OrderItem item = new OrderItem(product, result.getInt(11),result.getString(12));
 				list.add(item);
 			}
 			ps.close();
@@ -134,14 +134,14 @@ public class OrderDAO {
 	}
 
 
-	//Lấy danh sách người dùng theo id
+	//Lấy danh sách đơn hàng theo id
 	public List<Order> getOrderByUserID(int id) {
 		List<Order> list = new ArrayList<>();
 		DBContext db = DBContext.getInstance();
 		try {
 			connect = db.getConnection();
 			String query = "SELECT (order.id),user.userName,(order.orderDate),(order.status) FROM `order` join user on `order`.user_id = user.id"
-						+ " WHERE  user.id = ?";
+						+ " WHERE  user.id = ? AND `order`.`status` != 0";
 			ps = connect.prepareStatement(query);
 			ps.setInt(1, id);
 			result = ps.executeQuery();
@@ -308,19 +308,10 @@ public class OrderDAO {
 
 	public static void main(String[] args) {
 		OrderDAO orderDAO = new OrderDAO();
-//		List<Order> order = orderDAO.getOrderByUserID(3);
-//		List<OrderItem> list = orderDAO.getIDProductSellMost();
-//		for (OrderItem orderItem : list) {
-//			System.out.println(orderItem);
-//		}
-		
-//		for (Order order2 : order) {
-//			System.out.println(order2);
-//		}
-		
-//		System.out.println(orderDAO.getOrderByID(15));
-		
-//		System.out.println(orderDAO.getUserOfOrder(15));
+		List<Order> l = orderDAO.getOrderByUserID(33);
+		for (Order order : l) {
+			System.out.println(order.toString());
+		}
 		
 		
 	}

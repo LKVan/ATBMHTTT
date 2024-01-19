@@ -126,7 +126,7 @@ td {
 						<td>${order.date}</td>
 						<td><a
 							href="<%=request.getContextPath()%>/orderUser?action=detail&orderId=${order.orderId}"
-							class="btn btn-primary"><i class="ti-eye" title="Chi tiết"></i></a></td>
+							class="btn btn-primary"> <span>Chi tiết</span><i class="ti-eye" title="Chi tiết"></i></a></td>
 						<c:if test="${order.status == 1 }">
 							<td><span class="badge badge-danger">Đang chờ xác
 									nhận</span></td>

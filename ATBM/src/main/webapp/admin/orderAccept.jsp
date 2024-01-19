@@ -87,14 +87,12 @@
 													class="btn btn-primary"><i class="ti-eye" title="Xem"></i></a></td>
 												<td><span class="badge badge-danger">Chờ xác
 														nhận</span></td>
-												<td><a
-													href="<%=request.getContextPath()%>/oderAction?action=confim&orderID=${o.orderId}"
-													class="btn btn-primary">Xác nhận</a> <a
-													href="<%=request.getContextPath()%>/oderAction?action=delete&orderID=${o.orderId}"
-													class="btn btn-info btn-danger text-white">Huỷ</a></td>
-
+												<td><button
+												 class="btn btn-primary" type="submit"
+														name="action" value="confim">Xác nhận</button>
+													<button class="btn btn-info btn-danger text-white" type="submit"
+														name="action" value="delete">Huỷ</button></td>
 											</tr>
-
 										</c:forEach>
 
 									</tbody>

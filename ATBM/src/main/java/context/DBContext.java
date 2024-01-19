@@ -5,11 +5,11 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DBContext {
-	private final String serverName = "localhost";
+	private final String serverName = "103.163.118.50";
 	private final String dbName = "web";
 	private final String portNumber = "3306";
-	private final String user = "root";
-	private final String password = "";
+	private final String user = "LKV";
+	private final String password = "123456aA@";
 	private static  DBContext instance;
 
 	public Connection getConnection() throws ClassNotFoundException, SQLException {
